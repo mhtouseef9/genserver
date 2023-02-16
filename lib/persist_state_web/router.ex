@@ -14,10 +14,11 @@ defmodule PersistStateWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", PersistStateWeb do
+  scope "/api", PersistStateWeb do
     pipe_through :api
 
-#    get "/", PageController, :index
+#    currently all game controller function are called through terminal. APIs need to build for those functions
+    post "/start-game", GameController, :start_game
   end
 
   # Other scopes may use custom stacks.
