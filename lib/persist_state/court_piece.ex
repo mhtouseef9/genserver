@@ -5,6 +5,7 @@ defmodule PersistState.CourtPiece do
 
   def start_link(attrs \\ []) do
     IO.inspect(attrs, label: "start link attrs:")
+#    we can pass game_name as name in attrs
     GenServer.start_link(__MODULE__, attrs, name: __MODULE__)
 #    send(self(), :start_game)
   end
@@ -35,7 +36,7 @@ defmodule PersistState.CourtPiece do
 
   def end_game(attrs) do
     IO.inspect(attrs, label: "end game attrs:")
-    GenServer.stop(__MODULE__)
+    GenServer.stop(__MODULE__, :normal)
   end
 #  ----------------------------------
 #      Genserver callbacks
@@ -85,7 +86,7 @@ defmodule PersistState.CourtPiece do
 #
 #  @impl true
 #  def terminate(reason, state) do
-#    IO.inspect(state, label: "handle_call(end_game) state:")
+#    IO.inspect(state, label: "terminate state:")
 #    :ok
 #  end
 
